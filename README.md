@@ -8,7 +8,9 @@ Funcionalmente, el código se conecta a la aplicación de Outlook de escritorio 
 
 ## ¿Qué tengo que hacer para usarlo?
 Lo primero que tienes que hacer para utilizar este código, es sistematizar el asunto de tus reuniones. Claramente, son muchas las reuniones que te llegan a diario y con múltiples asuntos. Probablemente algunas no se relacionen con tus proyectos, por lo que es necesario utilizar un sistema. El cogido desarrollado utiliza el siguiente sistema en el asunto de las reuniones:
-Deltek | Proyecto | Asunto
+
+**Deltek | Proyecto | Asunto**
+
 La idea de este sistema es que el código mapee solamente las reuniones que inicien en su asunto con Deltek. Ahora bien, para saber a qué proyecto se debe asignar la hora, es necesario identificarlo y por ultimo se asignan el asunto. El código entiende la separación entre esto con un “|” por lo que es indispensable seguir esta estructura para su poder usarlo. Esto demandara de ti mucha diciplina para mantener tu agenda organizada.
 Sabiendo esto, lo único que necesitas hacer es tener instaladas las siguientes librerías en Python.
 •	Datetime
@@ -20,15 +22,13 @@ Con esto y el IDE que quieras, puedes usar el código
 ## ¿Cómo la hago funcionar?
 **¡¡¡Muy fácil!!!**, lo primero que tiene que hacer es en la línea 51 y 52 del código, definir la fecha de inicio y la fecha de finalización en la cual quieres realizar el mapeo. La definimos de la siguiente manera: Año, mes, día. Por ejemplo, si quisiera que el código mapeara las reuniones desde el 1 hasta el 31 de octubre, la configuración seria la siguiente:
 
-'''
 	Start_Time  = dt.datetime(2021,10,1)
 	End_Time    = dt.datetime(2021,10,31)
-'''
 
 Luego tenemos que definir la palabra clave para que filtre las reuniones (en la línea 53). Para el caso particular de este código, se utilizó la palabra “Deltek”. Sin embargo, tu puede definir la palabra que quieras, siempre y cuando sistematices tu calendario con ella.
-'''
+
 	keyword     = 'Deltek'
-'''
+
 Con estas dos configuraciones, lo que reta es ejecutar y listo.
 
 ## ¿Muy chévere y todo, pero, cuáles son los resultados?
