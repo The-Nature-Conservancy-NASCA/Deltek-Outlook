@@ -11,8 +11,7 @@ Lo primero que tienes que hacer para utilizar este código, es sistematizar el a
 
 **Deltek | Proyecto | Asunto**
 
-La idea de este sistema es que el código mapee solamente las reuniones que inicien en su asunto con Deltek. Ahora bien, para saber a qué proyecto se debe asignar la hora, es necesario identificarlo y por ultimo se asignan el asunto. El código entiende la separación entre esto con un “|” por lo que es indispensable seguir esta estructura para su poder usarlo. Esto demandara de ti mucha diciplina para mantener tu agenda organizada.
-Sabiendo esto, lo único que necesitas hacer es tener instaladas las siguientes librerías en Python.
+La idea de este sistema es que el código mapee solamente las reuniones que inicien en su asunto con **Deltek**. Ahora bien, para saber a qué proyecto se debe asignar la hora, es necesario identificarlo y por ultimo se asignan el asunto. El código entiende la separación entre esto con un **|** por lo que es indispensable seguir esta estructura para su poder usarlo. Esto demandara de ti mucha diciplina para mantener tu agenda organizada. Sabiendo esto, lo único que necesitas hacer es tener instaladas las siguientes librerías en Python.
 
 - Datetime
 - Pandas
