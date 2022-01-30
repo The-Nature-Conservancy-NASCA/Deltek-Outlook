@@ -8,7 +8,7 @@ def get_calendar(begin,end):
     calendar = outlook.getDefaultFolder(9).Items
     calendar.IncludeRecurrences = True
     calendar.Sort('[Start]')
-    restriction = "[Start] >= '" + begin.strftime('%m/%d/%Y') + "' AND [END] <= '" + end.strftime('%m/%d/%Y') + "'"
+    restriction = "[Start] >= '" + begin.strftime('%d/%m/%Y') + "' AND [END] <= '" + end.strftime('%d/%m/%Y') + "'"
     calendar = calendar.Restrict(restriction)
     return calendar
 
@@ -48,8 +48,8 @@ def get_appointments(calendar,subject_kw = None,exclude_subject_kw = None, body_
 # ----------------------------------------------------------------------------------------------------------------------
 # Input Data
 # ----------------------------------------------------------------------------------------------------------------------
-Start_Time  = dt.datetime(2021,10,1)
-End_Time    = dt.datetime(2021,10,31)
+Start_Time  = dt.datetime(2022,1,1)
+End_Time    = dt.datetime(2022,2,1)
 keyword     = 'Deltek'
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -63,11 +63,22 @@ Results     = get_appointments(RawData, keyword)
 # ----------------------------------------------------------------------------------------------------------------------
 Tmp         = Results.groupby(by=['Project','Date'], as_index=False)['Hours'].sum()
 Tmp         = Tmp.pivot(index='Project', columns='Date', values='Hours')
+Tmp[np.isnan(Tmp)] = 0
 Tmp1        = pd.DataFrame(columns=np.arange(Start_Time, End_Time, dtype='datetime64[D]'))
 Report      = pd.concat([Tmp1, Tmp])
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Summary
+# ----------------------------------------------------------------------------------------------------------------------
+Summary = pd.DataFrame(index=Report.index.values,columns=['Horas', 'Porc'])
+Summary['Horas'] = Report.sum(1)
+Summary['Porc']  = Summary['Horas']/(Summary['Horas'].sum() - Summary.loc['01-Holiday']['Horas'])
+
+Report = Report.drop('01-Holiday')
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Save Results
 # ----------------------------------------------------------------------------------------------------------------------
 Results.to_excel('01-Report.xlsx')
-Report.to_excel('02-Deltek.xlsx')
+Report.to_csv('02-Deltek.csv', index_label='Name')
+Summary.to_csv('03-Total_Deltek.csv', index_label='Name')
