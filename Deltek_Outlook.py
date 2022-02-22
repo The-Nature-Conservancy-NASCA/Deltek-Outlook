@@ -23,7 +23,10 @@ def get_appointments(calendar,subject_kw = None,exclude_subject_kw = None, body_
 
     Tmp         = [app.subject for app in appointments]
     cal_subject = [app.split('|') for app in Tmp]
-    cal_subject = np.array(cal_subject)
+    cal_subject = np.asarray(cal_subject)
+    [f,c] = np.shape(cal_subject)
+    for i in range(0,f):
+        cal_subject[i,1] = cal_subject[i,1].replace(' ','')
     cal_date    = [app.start.strftime('%d/%m/%Y') for app in appointments]
     cal_date    = pd.to_datetime(cal_date,format='%d/%m/%Y')
     cal_start   = [app.start.strftime('%d/%m/%Y %H:%M:%S')for app in appointments]
