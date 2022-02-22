@@ -1,17 +1,10 @@
-# Libreria
-import numpy as np
+# Librerias
 from selenium import webdriver
-#from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 import time
-import os
 import pandas as pd
-import numpy as np
-from zipfile import ZipFile
-# import numpy as np
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Entradas al Sistema
@@ -88,11 +81,6 @@ for i in range(0,Value["Name"].size):
     WebDriverWait(driver, Ntime).until(EC.presence_of_element_located((By.ID, "editor"))).clear()
     WebDriverWait(driver, Ntime).until(EC.presence_of_element_located((By.ID, "editor"))).send_keys(str(Value["Activity ID"][i]))
     time.sleep(0.1)
-
-    #driver.switch_to.frame("hrsBodyScroller")
-    # driver.switch_to.frame(driver.find_element(By.id("hrsBodyScroller")))
-    # WebDriverWait(driver, Ntime).until(EC.element_to_be_clickable((By.ID, "hrsBodyScroller"))).click()
-
 
 for j in range(Datos.columns.size - 1):
     for i in range(0, Value["Name"].size):
